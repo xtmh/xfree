@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="value.css" />
+    <script type="text/javascript">
+        var objValue;
+        objValue = "";
+        function ValueChange(obj) {
+            objValue = obj.value;
+        }
+    </script>
+
+    <button id='button1'>push me</button>
+    <script type="text/javascript">
+        (function () {
+            var p = 0;
+            function clicked(e) {
+                //alert(p++);
+                document.getElementById('p1').textContent = p++;
+            };
+            document.getElementById('button1').onclick = clicked;
+        })();
+    </script>
+
+    <button id='button2'>push me</button>
+    <script>
+        (function () {
+            var p = 0;
+            function clicked(e) {
+                //alert(p++);
+                document.getElementById('p2').textContent = p++;
+            };
+            document.getElementById('button2').onclick = clicked;
+        })();
+    </script>
+</head>
+
+<body>
+    <div>
+        <p id="p1">P1</p>
+        <p id="p2">P2</p>
+    </div>
+    <hr>
+    <p id="a">ここに文字列を出力します。</p>
+    <div class="buttons">
+        <input type="radio" name="item" onchange="ValueChange(this);
+        document.getElementById('a').innerHTML='Selected A';" value="A">A
+        <input type="radio" name="item" onchange="ValueChange(this);
+        document.getElementById('a').innerHTML='Selected B';" value="B">B
+        <input type="radio" name="item" onchange="ValueChange(this);
+        document.getElementById('a').innerHTML='Selected C';" value="C">C
+    </div>
+</body>
+
+</html>

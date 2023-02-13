@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+</head>
+
+<body>
+
+	<script src="http://ccchart.com/js/ccchart.js" charset="Shift-JIS"></script>
+	<canvas id="id"></canvas>
+	<script>
+		for (var n = 0; n < 100; n++) {
+			var chartdata2 = {
+
+				"config": {
+					"title": "Line Chart",
+					"subTitle": "Canvasを使ったシンプルなラインチャートです",
+					"type": "line",
+					"lineWidth": 4,
+					"colorSet":
+						["red", "#FF9114", "#3CB000", "#00A8A2", "#0036C0", "#C328FF", "#FF34C0"],
+					"bgGradient": {
+						"direction": "vertical",
+						"from": "#687478",
+						"to": "#222222"
+					}
+				},
+
+				"data": [
+					["年度", 2007, 2008, 2009, 2010, 2011, 2012, 2013],
+					["紅茶", 435, 332, 524, 688, 774, 825, 999],
+					["コーヒー", 600, 335, 584, 333, 457, 788, 900],
+					["ジュース", 60, 435, 456, 352, 567, 678, 1260],
+					["ウーロン", 200, 123, 312, 200, 402, 300, 1000]
+				]
+			};
+			ccchart.init('id', chartdata2)
+			sleep(10);
+		}
+	</script>
+</body>
+
+</html>

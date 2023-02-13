@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>画像処理テスト２</title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="apple-touch-icon-180x180.png" sizes="180x180">
+<link rel="icon" type="image/png" href="icon-192x192.png" sizes="192x192">
+</head>
+<body>
+
+<script src="./js/image.js">
+</script>
+
+<div id="T1"></div>
+
+<p>
+<input type="file" onchange="onFileSelected(this)">
+</p>
+
+<p>
+<canvas id="test_canvas" width=256 height=256 style="border: 1px solid;" onclick="processImageData()"></canvas>
+</p>
+
+<p>
+<input type="button" value="image proc." onclick="processImageData2()">
+<input type="button" value="color2gray" onclick="processImageData3()">
+<input type="button" value="gray2color" onclick="processImageData4()">
+<input type="button" value="color2bin" onclick="processImageData5()">
+</p>
+
+</body>
+</html>

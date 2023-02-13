@@ -1,0 +1,32 @@
+<html>
+<head>
+    <meta charset="shift-jis">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="apple-touch-icon-180x180.png" sizes="180x180">
+    <link rel="icon" type="image/png" href="icon-192x192.png" sizes="192x192">
+</head>
+<script type="text/javascript">
+    /*
+    var func = function(x,y){
+        return x+y;
+    }*/
+    var b = 0;
+    var func = (x, y) => {
+        b = x + y;
+        return b;
+    }
+</script>
+
+<body>
+
+    <p id="a">test</p>
+
+    <input type="button" value="text" onclick="document.getElementById('a').innerHTML='Hello World!!';">
+
+    <input type="button" value="func" onclick="document.getElementById('a').innerHTML='func(1,'+b+')='+func(1,b);">
+<hr>
+<script src="https://gist.github.com/xtmh/721b1a152bccfa8a14167046e1bb6713.js"></script>
+</body>
+
+</html>

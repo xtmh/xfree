@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="test1.css" />
+<html>
+<head>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="apple-touch-icon-180x180.png" sizes="180x180">
+    <link rel="icon" type="image/png" href="icon-192x192.png" sizes="192x192">
+</head>
+<body>
+    <div>Sum of value.</div>
+    value: <input id='ii' name="i" /><br>
+    time :<input name="t" /><br>
+    <script>
+        // input tag を更新する関数
+        function update(_v) {
+            document.querySelector('input[name="i"]').value = _v
+        }
+        // time tag を更新する関数
+        function update_time(_v) {
+            document.querySelector('input[name="t"]').value = _v + " [ms]"
+        }
+        //  inputのクリア
+        function clr(_v) {
+            document.querySelector('input[name="i"]').value = _v
+            document.querySelector('input[name="t"]').value = _v
+        }
+        //  計算
+        function calc() {
+            const startTime = performance.now(); // 開始時間
+            //max = 10000000
+            max = document.getElementById('ii').value
+            sum = 0
+            //全加算
+            for (l = 0; l <= max; l++) {
+                sum += l
+            }
+            update(sum)
+            const endTime = performance.now(); // 終了時間
+            update_time((endTime - startTime) / 1000 * 1000)
+        }
+    </script>
+    <br>
+    <div>
+        <button onclick="calc()" >calc</button>
+    </div>
+    <br>
+    <div>
+        <button onclick="clr( '' ) ">CLR</button>
+    </div>
+    <hr>
+    <script src="https://gist.github.com/xtmh/be685f81c9bf7dc5609cb05567d43e07.js"></script>
+</body>
+</html>

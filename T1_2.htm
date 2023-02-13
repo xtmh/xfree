@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+</head>
+<body>
+	<form>
+		<input type="button" value="START" onclick="start_click(this)">
+	</form>
+	<script>
+		var loadFlg = 0;
+		function start_click(btn) {
+			if (loadFlg == 0) {
+				loadFlg = 1;
+				btn.value = "STOP";
+				change();
+			} else if (loadFlg == 1) {
+				loadFlg = 0;
+				btn.value = "START";
+			}
+		}
+
+		function change() {
+			var items = document.getElementsByTagName("li");
+			for (var i = 0; i < items.length; i++) {
+				var li = items[i];
+				li.innerHTML = Math.floor(Math.random() * 9);
+			}
+			if (loadFlg == 1) {
+				setTimeout("change()", 10);
+			}
+		}
+	</script>
+	<li></li>
+	<li></li>
+	<li></li>
+	<hr>
+	<script src="https://gist.github.com/xtmh/18e1a3e69a6ad98792b412b753a207bd.js"></script>
+</body>
+</html>

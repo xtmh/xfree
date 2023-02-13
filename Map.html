@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>テスト</title>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="apple-touch-icon-180x180.png" sizes="180x180">
+	<link rel="icon" type="image/png" href="icon-192x192.png" sizes="192x192">
+	<style>
+		#sample {
+			width: 600px;
+			height: 450px;
+		}
+
+		#map {
+			float: left;
+			margin-right: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="map" style="width: 600px; height: 450px"></div>
+
+	<script>
+		var map;
+		function initMap() {
+			map = new google.maps.Map(document.getElementById('map'), { // #sampleに地図を埋め込む
+				center: { // 地図の中心を指定
+					lat: 34.7019399, // 緯度
+					lng: 135.51002519999997 // 経度
+				},
+				zoom: 19 // 地図のズームを指定
+			});
+		}
+	</script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiFlS3VC5qvSwkhT1Px_ca6DLYo5L7w8Q&callback=initMap"></script>
+	<iframe
+		src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d12533.258574570693!2d140.3689683!3d38.249007999999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sja!2sjp!4v1643957875535!5m2!1sja!2sjp"
+		width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+		<hr>
+		<script src="https://gist.github.com/xtmh/3d9786f00463e17e041762313bbbfef8.js"></script>
+</body>
+
+</html>

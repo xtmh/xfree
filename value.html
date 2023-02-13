@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="value.css" />
+    <div class="c-button">
+        <button id='button1'>push me</button>
+        <button id='button2'>push me</button>
+    </div>
+    <script src="js/value.js"></script>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="apple-touch-icon-180x180.png" sizes="180x180">
+    <link rel="icon" type="image/png" href="icon-192x192.png" sizes="192x192">
+</head>
+
+<body>
+    <div>
+        <p id="p1">P1</p>
+        <p id="p2">P2</p>
+    </div>
+
+    <hr>
+    <p id="a">ここに文字列を出力します。</p>
+    <div class="buttons">
+        <input type="radio" name="item" onchange="ValueChange(this);
+        document.getElementById('a').innerHTML='Selected A';" value="A">A
+        <input type="radio" name="item" onchange="ValueChange(this);
+        document.getElementById('a').innerHTML='Selected B';" value="B">B
+        <input type="radio" name="item" onchange="ValueChange(this);
+        document.getElementById('a').innerHTML='Selected C';" value="C">C
+    </div>
+    <hr>
+    <script src="https://gist.github.com/xtmh/0b3ea18b4c0b30ce10c349936033c666.js"></script>
+</body>
+</html>

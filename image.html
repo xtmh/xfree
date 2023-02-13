@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=640">
+<title>画像処理テスト</title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="apple-touch-icon-180x180.png" sizes="180x180">
+<link rel="icon" type="image/png" href="icon-192x192.png" sizes="192x192">
+</head>
+<body>
+
+<script>
+    window.onload = function() {
+      setInterval(function() {
+        var dd = new Date();
+        document.getElementById("T1").innerHTML = dd.toLocaleString();
+      }, 1000);
+    }
+</script>
+
+<script src="./js/image.js">
+</script>
+
+<div>rev.05</div>
+
+<div id="T1"></div>
+<div id="T2">ここに処理時間を出力します</div>
+<div id="CLR">ここに色分析結果を出力します</div>
+<p>
+<input type="file" onchange="onFileSelected(this)">
+</p>
+
+<p>
+<canvas id="test_canvas" width=256 height=256 style="border: 1px solid;" onclick="processImageData()"></canvas>
+</p>
+
+<div>
+<input type="button" value="blur" onclick="processFunc(1)">
+<input type="button" value="color cange" onclick="processFunc(2)">
+<input type="button" value="color2gray" onclick="processFunc(3)">
+<input type="button" value="gray2color" onclick="processFunc(4)">
+<input type="button" value="color2bin" onclick="processFunc(5)">
+<input type="button" value="color analyze" onclick="processFunc(6)">
+</div>
+<hr>
+<script src="https://gist.github.com/xtmh/ee79c61760d2944f4e649ec17b6cee6c.js"></script>
+</body>
+</html>

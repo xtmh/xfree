@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="lib/css/style.css">
+<link rel="stylesheet" type="text/css" href="lib/css/overcast/jquery-ui.min.css">
+<title>HTML5 Spatial Frequency Filtering using 2D-FFT</title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="apple-touch-icon-180x180.png" sizes="180x180">
+<link rel="icon" type="image/png" href="icon-192x192.png" sizes="192x192">
+<style>
+      h1{ font-family:"Century", serif; border-left:4px solid #00aa66; padding-left:8px; }
+      a{ color:#00aa66; }
+      #Filter{ margin:10px 0 10px 10px; }
+      #Filter .ui-state-default{ color:#00aa66; }
+      #Filter .ui-state-hover{ color:#00cc66; }
+      #Filter .ui-state-active{ color:#ffffff; }
+      #Slider{ width:300px; margin:10px 0 10px 10px; }
+      #Slider .ui-slider-handle{ border-color:#00aa66; }
+    </style>
+<script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-4840440-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+</head>
+<body>
+<article>
+<header>
+<h1>Spatial Frequency Filtering using 2D-FFT</h1>
+</header>
+<div class="wrap"><img src="http://ytaka.html.xdomain.jp//images/tomato.jpg" width="256" height="256">
+<canvas id="Spectrum" width="256" height="256"></canvas>
+<canvas id="Result" width="256" height="256"></canvas>
+</div>
+<div>
+<label>フィルタタイプ(filter type): </label>
+<div id="Filter">
+<input type="radio" id="HPF" name="filter" value="HPF" checked="checked" />
+<label for="HPF">Highpass</label>
+<input type="radio" id="LPF" name="filter" value="LPF" />
+<label for="LPF">Lowpass</label>
+</div>
+<label>フィルタ半径(filter radius): </label>
+<div id="Slider"></div>
+<div id="ViewType">
+<label>スペクトル対数表示(logarithmic display)&emsp;on</label>
+<input type="radio" name="view" value="0" checked="checked" />
+<label>off</label>
+<input type="radio" name="view" value="1" />
+</div>
+<p>二次元離散フーリエ変換 (2D-FFT) による空間周波数フィルタ (ハイパス/ローパスフィルタ) を適用します。<br />
+IE9.0, Firefox8.0, Chrome16.0, Safari5.0, Opera11.60で動作確認済み。</p>
+</div>
+<footer>
+<a href="./index.html" title="index">index</a>
+</footer>
+</article>
+<script src="lib/js/jquery.min.js"></script>
+<script src="lib/js/jquery-ui.min.js"></script>
+<script src="lib/js/fft.js"></script>
+<script src="lib/js/fft-client.js"></script>
+<hr>
+<script src="https://gist.github.com/xtmh/8d1bde06b5921313b2d3fdd19d092059.js"></script>
+</body>
+</html>

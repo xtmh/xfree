@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <form>
+        <input type="button" value="START" onclick="start_click()">
+    </form>
+    <script>
+        var loadFlg = 0;
+        function start_click() {
+            if (loadFlg == 0) {
+                loadFlg = 1;
+                change();
+            } else if (loadFlg == 1) {
+                loadFlg = 0;
+            }
+        }
+
+        function change() {
+            var items = document.getElementsByTagName("li");
+            for (var i = 0; i < items.length; i++) {
+                var li = items[i];
+                li.innerHTML = Math.floor(Math.random() * 9);
+            }
+            if (loadFlg == 1) {
+                setTimeout("change()", 10);
+            }
+        }
+    </script>
+    <li></li>
+    <li></li>
+    <li></li>
+</body>
+
+</html>

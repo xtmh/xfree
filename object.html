@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+    <head>
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon" href="apple-touch-icon-180x180.png" sizes="180x180">
+        <link rel="icon" type="image/png" href="icon-192x192.png" sizes="192x192">
+    </head>
+<script>
+    var i = document.getElementById('i');
+    // Object 構造体？
+    var obj = {
+        x: 10,
+        y: 20,
+        name: "name"
+    }
+
+    function calc() {
+        //  objの要素をエディットに表示
+        i = document.getElementById('i');
+        obj.x = obj.y
+        //document.querySelector('input[name="i"]').value = obj.name
+        //document.querySelector('input[name="t"]').value = obj.x
+        document.getElementById('i').value = obj.name + " + " + i.value;
+        document.getElementById('t').value = obj.x;
+    }
+</script>
+
+<body>
+    <div>Object aqcuisition</div>
+    <input id='i'/>
+    <input id='t'/><br>
+
+    <button onclick="calc()">calc</button>
+    <hr>
+    <script src="https://gist.github.com/xtmh/6ac796ca14fd81bce2b160e272214a19.js"></script>
+</body>
+</html>

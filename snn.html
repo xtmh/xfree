@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="shift-jis">
+  <link rel="stylesheet" type="text/css" href="lib/css/style.css">
+  <title>HTML5 Image Processing (Symmetric Nearest Neighbor)</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="apple-touch-icon-180x180.png" sizes="180x180">
+  <link rel="icon" type="image/png" href="icon-192x192.png" sizes="192x192">
+  <style>
+    h1 {
+      border-left: 4px solid #0099ff;
+      padding-left: 8px;
+    }
+  </style>
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4840440-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
+</head>
+
+<body>
+  <article>
+    <header>
+      <h1>Symmetric Nearest Neighbor Filter</h1>
+    </header>
+    <div class="wrap"><img src="images/snn.jpg" width="300" height="225">
+      <canvas id="Canvas" width="300" height="225"></canvas>
+    </div>
+    <div>
+      <button id="Button">apply filter</button>
+      <label>radius</label>
+      <select id="SelectBox">
+        <option value="1" selected>1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+      <p>
+        <span style="color: #f00;">CPU Burner Alert!! (radius 3)</span><br />
+        HTML5 Canvas で絵画調変換処理を行います。<br />
+        Firefox3.6, Safari5.0, Chrome10.0, Opera11.0 で動作確認済み。<br />
+        低スペックマシンで radius 3 を回すとブラウザが alert 出すかもしれません。
+      </p>
+    </div>
+    <footer>
+      <a href="./index.html" title="index">index</a>
+    </footer>
+  </article>
+  <script src="lib/js/cavin.js"></script>
+  <script>
+    window.addEventListener('load', function (e) {
+      var context = document.querySelector('#Canvas').getContext('2d');
+      var btn = document.querySelector('#Button');
+      var sb = document.querySelector('#SelectBox');
+      context.fillStyle = '#ffffff';
+      context.fillRect(0, 0, context.canvas.width, context.canvas.height);
+
+      Cavin.get({
+        path: './images/snn.jpg',
+        success: function (data) {
+          btn.addEventListener('click', function (e) {
+            try {
+              var rv = Cavin.Filter.snn(data, sb.value);
+              Cavin.put(rv, context);
+            } catch (e) {
+              alert(e);
+            }
+          }, false); // end btn
+        },
+        error: function (message) {
+          alert(message);
+        },
+      });  // end Cavin
+    }, false); // end window
+  </script>
+  <hr>
+  <script src="https://gist.github.com/xtmh/573206da0cd9d77af8d694b97d25a33e.js"></script>
+</body>
+
+</html>
