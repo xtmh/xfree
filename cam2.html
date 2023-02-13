@@ -44,10 +44,11 @@
        */
       navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
         video.srcObject = stream;
+        /*
         video.onloadedmetadata = (e) => {
-          video.play();
-          //video.pause();
-        };
+          //video.play();
+          video.pause();
+        };*/
       })
         .catch((err) => {
           console.log(err.name + ": " + err.message);
