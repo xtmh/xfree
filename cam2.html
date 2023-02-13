@@ -45,8 +45,8 @@
       navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
         video.srcObject = stream;
         video.onloadedmetadata = (e) => {
-          //video.play();
-          video.pause();
+          video.play();
+          //video.pause();
         };
       })
         .catch((err) => {
@@ -60,8 +60,9 @@
         const ctx = canvas.getContext("2d");
 
         // 演出的な目的で一度映像を止めてSEを再生する
-        video.play();
+
         video.pause();
+        video.play();
         /*
         setTimeout(() => {
           video.play();    // カメラ再開
