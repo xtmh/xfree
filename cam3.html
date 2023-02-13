@@ -12,15 +12,10 @@
       border: 1px solid gray;
     }
   </style>
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" href="apple-touch-icon-180x180.png" sizes="180x180">
-  <link rel="icon" type="image/png" href="icon-192x192.png" sizes="192x192">
 </head>
 
 <body>
-
   <h1>HTML5カメラ3</h1>
-
   <video id="camera" width="300" height="200"></video>
   <canvas id="picture" width="300" height="200"></canvas>
   <form>
@@ -42,8 +37,8 @@
       const constraints = {
         audio: false,
         video: {
-          width: 200,
-          height: 300,
+          width: 300,
+          height: 200,
           //facingMode: "user"   // フロントカメラを利用する
           facingMode: { exact: "environment" }  // リアカメラを利用する場合
         }
@@ -74,14 +69,12 @@
         setTimeout(() => {
           video.play();    // カメラ再開
         }, 500);
-
         // canvasに画像を貼り付ける
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
       });
     };
   </script>
   <hr>
-  <script src="https://gist.github.com/xtmh/437180fb9a60688d4e0b1bea163bffc4.js"></script>
+  <script src="https://gist.github.com/xtmh/3f3f79e1cca183029883a1c53e9d3213.js"></script>
 </body>
-
 </html>
