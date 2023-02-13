@@ -5,32 +5,22 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <link rel="stylesheet" type="text/css" href="gist.css" />
-  <title>Camera Test</title>
+  <title>Camera2</title>
   <style>
     canvas,
     video {
       border: 1px solid gray;
     }
   </style>
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" href="apple-touch-icon-180x180.png" sizes="180x180">
-  <link rel="icon" type="image/png" href="icon-192x192.png" sizes="192x192">
 </head>
 
 <body>
-
   <h1>HTML5カメラ2</h1>
-
   <video id="camera" width="300" height="200"></video>
   <canvas id="picture" width="300" height="200"></canvas>
   <form>
     <button type="button" id="shutter">シャッター</button>
   </form>
-
-  <audio id="se" preload="auto">
-    <source src="camera-shutter1.mp3" type="audio/mp3">
-  </audio>
-
   <script>
     window.onload = () => {
       //window.addEventListener('DOMContentLoaded', function() {
@@ -70,11 +60,11 @@
 
         // 演出的な目的で一度映像を止めてSEを再生する
         video.pause();
-        se.play();
+        /*
         setTimeout(() => {
           video.play();    // カメラ再開
         }, 500);
-
+        */
         // canvasに画像を貼り付ける
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
       });
@@ -91,7 +81,7 @@
     gtag('config', 'UA-143297-8');
   </script>
   <hr>
-  <script src="https://gist.github.com/xtmh/761510150a3ae9df6687bc02b41665f6.js"></script>
+  <script src="https://gist.github.com/xtmh/ab25867f394f34f88fd142d017984ea7.js"></script>
 </body>
 
 </html>
