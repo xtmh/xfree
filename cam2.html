@@ -58,18 +58,15 @@
        * シャッターボタン
        */
       document.querySelector("#shutter").addEventListener("click", () => {
-        const ctx = canvas.getContext("2d");
-
-        // 演出的な目的で一度映像を止めてSEを再生する
-
-        video.pause();
-        //video.play();
-        /*
-        setTimeout(() => {
-          video.play();    // カメラ再開
-        }, 500);
-        */
+        navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
+          if(!stream){
+            video.srcObject = stream;          
+          }else{
+            video.strObject = null;
+          }
+        });
         // canvasに画像を貼り付ける
+        const ctx = canvas.getContext("2d");
         ctx.drawImage(video, 0, 0, 200, 300);
       });
     };
