@@ -17,16 +17,47 @@
   <h1>HTML5カメラ2</h1>
   <video id="camera" width="300" height="200"></video>
   <canvas id="picture" width="300" height="200"></canvas>
+  <canvas id="test_canvas" width="300" height="200"></canvas>
   <form>
     <button type="button" id="shutter">シャッター</button>
+    <button type="button" id="func">グレー化</button>
   </form>
   <script>
+    //  グレースケール
+    function processImageData(e) {
+      const cv1 = document.querySelector("#picture");
+      const cv2 = document.querySelector("#test_canvas");
+
+      var ctx = cv1.getContext("2d");
+      var img_data = cv1.getContext("2d").createImageData(300, 200);
+      img_data = ctx.getImageData(0,0,300,200);
+      var processed_data = cv1.getContext('2d').createImageData(img_data.width, img_data.height);
+      processed_data = img_data;
+      /*
+      for (var y = 1;y < img_data.height - 1;y++) {
+        for (var x = 1;x < img_data.width - 1;x++) {
+            var index = (x + y * img_data.width) * 4;
+            var gray = img_data.data[index];
+            processed_data.data[index] = gray;
+            processed_data.data[index + 1] = gray;
+            processed_data.data[index + 2] = gray;
+            processed_data.data[index + 3] = 255;   //  alfa
+        }
+      } */   
+      cv2.getContext('2d').putImageData(processed_data, 0, 0);
+    }
+
     window.onload = () => {
       //window.addEventListener('DOMContentLoaded', function() {
       const video = document.querySelector("#camera");
       const canvas = document.querySelector("#picture");
       const se = document.querySelector('#se');
-
+      var ctx = canvas.getContext("2d");
+      var image = new Image();
+      image.src = './images/tomato.jpg';
+      image.onload = () => {
+        ctx.drawImage(image, 0, 0, 300, 200);
+      };
       //  カメラ設定 
       const constraints = {
         audio: false,
@@ -37,31 +68,36 @@
           // facingMode: { exact: "environment" }  // リアカメラを利用する場合
         }
       };
-
+      
       //  カメラを<video>と同期
       navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
         video.srcObject = stream;
-      })
-
-      //  シャッターボタン
-      document.querySelector("#shutter").addEventListener("click", () => {
-        navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
-          if (!stream) {
-            //  ビデオ開始
-            video.srcObject = stream;
-            video.onloadedmetadata = (e) => {
-              video.play();
-            };
-            // canvasに画像を貼り付ける
-            const ctx = canvas.getContext("2d");
-            ctx.drawImage(video, 0, 0, 200, 300);
-          } else {
-            //  ビデオ停止
-            video.strObject = null;
-          }
-        });
       });
-    };
+    }
+    
+    //  シャッターボタン
+    document.querySelector("#shutter").addEventListener("click", () => {
+      navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
+        if (!stream) {
+          //  ビデオ開始
+          video.srcObject = stream;
+          video.onloadedmetadata = (e) => {
+            video.play();
+          };
+          // canvasに画像を貼り付ける
+          //const ctx = canvas.getContext("2d");
+          ctx.drawImage(video, 0, 0, 200, 300);
+        } else {
+          //  ビデオ停止
+          video.strObject = null;
+        }
+      });
+    });
+ 
+    document.querySelector("#func").addEventListener("click", () =>{
+      processImageData();
+    });
+    
   </script>
   <hr>
   <script src="https://gist.github.com/xtmh/ab25867f394f34f88fd142d017984ea7.js"></script>
