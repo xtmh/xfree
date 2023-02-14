@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- saved from url=(0042)https://miku3.net/html5/camera/camera.html -->
 <html>
 
 <head>
@@ -9,7 +8,7 @@
   <style>
     canvas,
     video {
-      border: 1px solid gray;
+      border: 1px solid rgb(247, 6, 6);
     }
   </style>
 </head>
@@ -28,7 +27,7 @@
       const canvas = document.querySelector("#picture");
       const se = document.querySelector('#se');
 
-      /** カメラ設定 */
+      //  カメラ設定 
       const constraints = {
         audio: false,
         video: {
@@ -39,52 +38,32 @@
         }
       };
 
-      /**
-       * カメラを<video>と同期
-       */
+      //  カメラを<video>と同期
       navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
         video.srcObject = stream;
-        /*
-        video.onloadedmetadata = (e) => {
-          //video.play();
-          video.pause();
-        };*/
       })
-        .catch((err) => {
-          console.log(err.name + ": " + err.message);
-        });
 
-      /**
-       * シャッターボタン
-       */
+      //  シャッターボタン
       document.querySelector("#shutter").addEventListener("click", () => {
         navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
-          if(!stream){
+          if (!stream) {
+            //  ビデオ開始
             video.srcObject = stream;
             video.onloadedmetadata = (e) => {
               video.play();
-            };          
+            };
             // canvasに画像を貼り付ける
             const ctx = canvas.getContext("2d");
             ctx.drawImage(video, 0, 0, 200, 300);
-          }else{
+          } else {
+            //  ビデオ停止
             video.strObject = null;
           }
         });
       });
     };
   </script>
-
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async="" src="./Camera Test_files/js"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-143297-8');
-  </script>
   <hr>
   <script src="https://gist.github.com/xtmh/ab25867f394f34f88fd142d017984ea7.js"></script>
 </body>
-
 </html>
