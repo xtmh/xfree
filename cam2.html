@@ -60,18 +60,20 @@
       document.querySelector("#shutter").addEventListener("click", () => {
         navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
           if(!stream){
-            video.srcObject = stream;          
+            video.srcObject = stream;
+            video.onloadedmetadata = (e) => {
+              video.play();
+            };          
+            // canvasに画像を貼り付ける
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(video, 0, 0, 200, 300);
           }else{
             video.strObject = null;
           }
         });
-        // canvasに画像を貼り付ける
-        const ctx = canvas.getContext("2d");
-        ctx.drawImage(video, 0, 0, 200, 300);
       });
     };
   </script>
-
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async="" src="./Camera Test_files/js"></script>
