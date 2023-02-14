@@ -28,8 +28,8 @@
       const cv1 = document.querySelector("#picture");
       const cv2 = document.querySelector("#test_canvas");
       var ctx = cv1.getContext("2d");
-      var img_data = ctx.createImageData(300, 200);
-      img_data = ctx.getImageData(0,0,300,200);
+      //var img_data = ctx.createImageData(300, 200);
+      var img_data = ctx.getImageData(0,0,300,200);
       var processed_data = cv1.getContext('2d').createImageData(img_data.width, img_data.height);
       for (var y = 1;y < img_data.height - 1;y++) {
         for (var x = 1;x < img_data.width - 1;x++) {
