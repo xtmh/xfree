@@ -25,22 +25,28 @@
   <script>
     //  グレースケール
     function processImageData(e) {
+      var bFlg = Boolean("true");
       const cv1 = document.querySelector("#picture");
       const cv2 = document.querySelector("#test_canvas");
       var ctx = cv1.getContext("2d");
       //var img_data = ctx.createImageData(300, 200);
       var img_data = ctx.getImageData(0,0,300,200);
       var processed_data = cv1.getContext('2d').createImageData(img_data.width, img_data.height);
-      for (var y = 1;y < img_data.height - 1;y++) {
-        for (var x = 1;x < img_data.width - 1;x++) {
-            var index = (x + y * img_data.width) * 4;
-            var gray = img_data.data[index];
-            processed_data.data[index] = gray;
-            processed_data.data[index + 1] = gray;
-            processed_data.data[index + 2] = gray;
-            processed_data.data[index + 3] = 255;   //  alfa
+      if(bFlg){
+        for (var y = 1;y < img_data.height - 1;y++) {
+          for (var x = 1;x < img_data.width - 1;x++) {
+              var index = (x + y * img_data.width) * 4;
+              var gray = img_data.data[index];
+              processed_data.data[index] = gray;
+              processed_data.data[index + 1] = gray;
+              processed_data.data[index + 2] = gray;
+              processed_data.data[index + 3] = 255;   //  alfa
+          }
         }
-      }   
+      }else{
+        processed_data = img_data;
+      }
+      bFlg = !bFlg;
       cv2.getContext('2d').putImageData(processed_data, 0, 0);
     }
 
