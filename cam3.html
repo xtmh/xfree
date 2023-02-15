@@ -28,9 +28,9 @@
     const cv2 = document.querySelector("#test_canvas");
     var ctx = cv1.getContext("2d");
     //  グレースケール
-    var bFlg = Boolean("true");    
+    var bFlg = Boolean("true");
+    var cnt = 0;    
     function processImageData(e) {
-      //var img_data = ctx.createImageData(300, 200);
       var img_data = ctx.getImageData(0,0,cv1.width,cv1.height);
       var processed_data = cv1.getContext('2d').createImageData(img_data.width, img_data.height);
       if(bFlg){
@@ -40,10 +40,11 @@
               var gray = img_data.data[index];
               processed_data.data[index] = gray;
               processed_data.data[index + 1] = gray;
-              processed_data.data[index + 2] = gray;
+              processed_data.data[index + 2] = cnt*100;
               processed_data.data[index + 3] = 255;   //  alfa
           }
         }
+        cnt++;
       }else{
         processed_data = img_data;
       }
