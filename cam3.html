@@ -31,7 +31,7 @@
     var bFlg = Boolean("true");    
     function processImageData(e) {
       //var img_data = ctx.createImageData(300, 200);
-      var img_data = ctx.getImageData(0,0,300,200);
+      var img_data = ctx.getImageData(0,0,cv1.width,cv1.height);
       var processed_data = cv1.getContext('2d').createImageData(img_data.width, img_data.height);
       if(bFlg){
         for (var y = 1;y < img_data.height - 1;y++) {
