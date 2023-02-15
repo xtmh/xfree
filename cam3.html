@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<!-- saved from url=(0042)https://miku3.net/html5/camera/camera.html -->
 <html>
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <link rel="stylesheet" type="text/css" href="gist.css" />
-  <title>Camera Test</title>
+  <title>Camera</title>
   <style>
     canvas,
     video {
-      border: 1px solid gray;
+      border: 1px solid rgb(247, 6, 6);
     }
   </style>
 </head>
@@ -18,63 +17,91 @@
   <h1>HTML5カメラ3</h1>
   <video id="camera" width="300" height="200"></video>
   <canvas id="picture" width="300" height="200"></canvas>
+  <canvas id="test_canvas" width="300" height="200"></canvas>
   <form>
     <button type="button" id="shutter">シャッター</button>
+    <button type="button" id="func">画像処理</button>
   </form>
-
-  <audio id="se" preload="auto">
-    <source src="camera-shutter1.mp3" type="audio/mp3">
-  </audio>
-
   <script>
+    //  共通パラメータ
+    const cv1 = document.querySelector("#picture");
+    const cv2 = document.querySelector("#test_canvas");
+    var ctx = cv1.getContext("2d");
+    //  グレースケール
+    var bFlg = Boolean("true");    
+    function processImageData(e) {
+      //var img_data = ctx.createImageData(300, 200);
+      var img_data = ctx.getImageData(0,0,300,200);
+      var processed_data = cv1.getContext('2d').createImageData(img_data.width, img_data.height);
+      if(bFlg){
+        for (var y = 1;y < img_data.height - 1;y++) {
+          for (var x = 1;x < img_data.width - 1;x++) {
+              var index = (x + y * img_data.width) * 4;
+              var gray = img_data.data[index];
+              processed_data.data[index] = gray;
+              processed_data.data[index + 1] = gray;
+              processed_data.data[index + 2] = gray;
+              processed_data.data[index + 3] = 255;   //  alfa
+          }
+        }
+      }else{
+        processed_data = img_data;
+      }
+      bFlg = !bFlg;
+      cv2.getContext('2d').putImageData(processed_data, 0, 0);
+    }
+
     window.onload = () => {
       //window.addEventListener('DOMContentLoaded', function() {
       const video = document.querySelector("#camera");
-      const canvas = document.querySelector("#picture");
-      const se = document.querySelector('#se');
-
-      /** カメラ設定 */
+      var image = new Image();
+      image.src = './images/tomato.jpg';
+      image.onload = () => {
+        ctx.drawImage(image, 0, 0, 300, 200);
+      };
+      //  カメラ設定 
       const constraints = {
         audio: false,
         video: {
           width: 300,
           height: 200,
-          //facingMode: "user"   // フロントカメラを利用する
-          facingMode: { exact: "environment" }  // リアカメラを利用する場合
+          facingMode: "user"   // フロントカメラを利用する
+          // facingMode: { exact: "environment" }  // リアカメラを利用する場合
         }
       };
-
-      /**
-       * カメラを<video>と同期
-       */
+      
+      //  カメラを<video>と同期
       navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
         video.srcObject = stream;
-        video.onloadedmetadata = (e) => {
-          video.play();
-        };
-      })
-        .catch((err) => {
-          console.log(err.name + ": " + err.message);
-        });
-
-      /**
-       * シャッターボタン
-       */
-      document.querySelector("#shutter").addEventListener("click", () => {
-        const ctx = canvas.getContext("2d");
-
-        // 演出的な目的で一度映像を止めてSEを再生する
-        video.pause();
-        se.play();
-        setTimeout(() => {
-          video.play();    // カメラ再開
-        }, 500);
-        // canvasに画像を貼り付ける
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
       });
-    };
+    }
+    
+    //  １　シャッターボタン
+    document.querySelector("#shutter").addEventListener("click", () => {
+      navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
+        if (!stream) {
+          //  ビデオ開始
+          video.srcObject = stream;
+          video.onloadedmetadata = (e) => {
+            video.play();
+          };
+          // canvasに画像を貼り付ける
+          //const ctx = canvas.getContext("2d");
+          ctx.drawImage(video, 0, 0, 200, 300);
+        } else {
+          //  ビデオ停止
+          video.strObject = null;
+        }
+      });
+    });
+ 
+    //  ２　画像処理ボタン
+    document.querySelector("#func").addEventListener("click", () =>{
+      processImageData();
+    });
+    
   </script>
   <hr>
-  <script src="https://gist.github.com/xtmh/3f3f79e1cca183029883a1c53e9d3213.js"></script>
+  <script src="https://gist.github.com/xtmh/ab25867f394f34f88fd142d017984ea7.js"></script>
 </body>
 </html>
