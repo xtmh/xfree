@@ -40,7 +40,7 @@
               var gray = img_data.data[index];
               processed_data.data[index] = gray;
               processed_data.data[index + 1] = gray;
-              processed_data.data[index + 2] = cnt*100;
+              processed_data.data[index + 2] = (cnt*100)%255;
               processed_data.data[index + 3] = 255;   //  alfa
           }
         }
