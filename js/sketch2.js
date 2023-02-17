@@ -17,8 +17,8 @@ const detection_options = {
 
 function preload(){
     //img = loadImage('images/frida.jpg')
-    //img = loadImage('images/lena_gray.jpg')
-    img = img0;
+    img = loadImage('images/lena_gray.jpg')
+    //img = img0;
 }
 
 function setup() {
