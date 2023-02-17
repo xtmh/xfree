@@ -9,7 +9,8 @@ const detection_options = {
 }
 
 function preload(){
-    img = loadImage('images/frida.jpg')
+    //img = loadImage('images/frida.jpg')
+    img = loadImage('images/lena.jpg')
 }
 
 function setup() {
