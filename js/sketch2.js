@@ -10,8 +10,8 @@ function onFileSelected(input) {
     img = loadImage(str);
     //
     createCanvas(200, 200);
-    //img.resize(width, height);
-    img.resize(256, 256);
+    img.resize(width, height);
+    //img.resize(256, 256);
     //
     faceapi = ml5.faceApi(detection_options, modelReady)
     textAlign(RIGHT);
