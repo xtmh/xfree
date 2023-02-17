@@ -2,6 +2,13 @@ let faceapi;
 let img;
 let detections;
 
+function onFileLoaded(e) {
+    var src_data = e.target.result;
+    var img0 = new Image();
+    img0.onload = onImageSetted;
+    img0.src = src_data;
+}
+
 // by default all options are set to true
 const detection_options = {
     withLandmarks: true,
@@ -10,7 +17,8 @@ const detection_options = {
 
 function preload(){
     //img = loadImage('images/frida.jpg')
-    img = loadImage('images/lena_gray.jpg')
+    //img = loadImage('images/lena_gray.jpg')
+    img = img0;
 }
 
 function setup() {
