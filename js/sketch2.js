@@ -6,11 +6,12 @@ let str;
 
 function onFileSelected(input) {
     var file = input.files[0];
-    var str = "images/"+file.name;    //input.value;
+    //var str = "images/"+file.name;    //input.value;
+    var str = file.name;    //input.value;
     img = loadImage(str);
     //
-    createCanvas(img.width, img.height);
-    //img.resize(width, height);
+    createCanvas(200, 200);
+    img.resize(width, height);
     //img.resize(256, 256);
     //
     faceapi = ml5.faceApi(detection_options, modelReady)
