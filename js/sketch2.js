@@ -6,8 +6,8 @@ let str;
 
 function onFileSelected(input) {
     var file = input.files[0];
-    //var str = "images/"+file.name;    //input.value;
-    var str = file.name;    //input.value;
+    var str = "images/"+file.name;    //input.value;
+    //var str = file.name;    //input.value;
     img = loadImage(str);
     //
     createCanvas(200, 200);
