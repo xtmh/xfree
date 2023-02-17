@@ -4,14 +4,14 @@ let img0;
 let detections;
 let str;
 
-function onFileLoaded(e) {
-    var src_data = e.target.result;
-    img = new Image();
-    img.onload = onImageSetted;
-    img.src = src_data;
+function onFileSelected(input) {
+    var file = input.files[0];
+    var str = "images/"+file.name;    //input.value;
+    img = loadImage(str);
     //
     createCanvas(200, 200);
-    img.resize(width, height);
+    //img.resize(width, height);
+    img.resize(256, 256);
     //
     faceapi = ml5.faceApi(detection_options, modelReady)
     textAlign(RIGHT);
@@ -23,11 +23,13 @@ const detection_options = {
     withDescriptors: false,
 }
 
+//  setup前に処理される
 function preload(){
     //img = loadImage('images/frida.jpg')
     //img = loadImage('images/lena_gray.jpg')
 }
 
+//  最初に処理される
 function setup() {
     // here we use a callback to display the image after loading
     /*
