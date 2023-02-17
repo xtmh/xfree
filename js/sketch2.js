@@ -104,5 +104,4 @@ function drawLandmarks(detections){
     endShape();
 
     pop();
-
 }
