@@ -1,12 +1,20 @@
 let faceapi;
 let img;
+let img0;
 let detections;
+let str;
 
 function onFileLoaded(e) {
     var src_data = e.target.result;
-    var img0 = new Image();
-    img0.onload = onImageSetted;
-    img0.src = src_data;
+    img = new Image();
+    img.onload = onImageSetted;
+    img.src = src_data;
+    //
+    createCanvas(200, 200);
+    img.resize(width, height);
+    //
+    faceapi = ml5.faceApi(detection_options, modelReady)
+    textAlign(RIGHT);
 }
 
 // by default all options are set to true
@@ -17,17 +25,28 @@ const detection_options = {
 
 function preload(){
     //img = loadImage('images/frida.jpg')
-    img = loadImage('images/lena_gray.jpg')
-    //img = img0;
+    //img = loadImage('images/lena_gray.jpg')
 }
 
 function setup() {
+    // here we use a callback to display the image after loading
+    /*
+    loadImage('images/frida.jpg', img => {
+        image(img, 0, 0);
+    });*/    
+    /*
     createCanvas(200, 200);
     img.resize(width, height);
 
     faceapi = ml5.faceApi(detection_options, modelReady)
     textAlign(RIGHT);
+    */
 }
+
+function draw(){
+    //image(img, 0, 0);
+}
+
 
 function modelReady() {
     console.log('ready!')
