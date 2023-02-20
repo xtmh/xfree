@@ -32,18 +32,11 @@ function preload(){
 
 //  最初に処理される
 function setup() {
-    // here we use a callback to display the image after loading
-    /*
-    loadImage('images/frida.jpg', img => {
-        image(img, 0, 0);
-    });*/    
-    /*
     createCanvas(200, 200);
     img.resize(width, height);
 
     faceapi = ml5.faceApi(detection_options, modelReady)
     textAlign(RIGHT);
-    */
 }
 
 function draw(){
