@@ -8,13 +8,13 @@ function onFileSelected(input) {
     var file = input.files[0];
     var str = "images/"+file.name;    //input.value;
     //var str = file.name;    //input.value;
-    img = loadImage(str);
+    img = await loadImage(str);
     //
-    //createCanvas(200, 200);
+    createCanvas(width, height);
     img.resize(width, height);
     //img.resize(256, 256);
     //
-    faceapi = ml5.faceApi(detection_options, modelReady)
+    faceapi = ml5.faceApi(detection_options, modelReady);
     textAlign(RIGHT);
 }
 
@@ -32,7 +32,7 @@ function preload(){
 
 //  最初に処理される
 function setup() {
-    createCanvas(200, 200);
+    //createCanvas(200, 200);
     //img.resize(width, height);
 
     //faceapi = ml5.faceApi(detection_options, modelReady)
@@ -47,7 +47,7 @@ function draw(){
 function modelReady() {
     console.log('ready!')
     console.log(faceapi)
-    faceapi.detectSingle(img, gotResults)
+    const detections = await faceapi.detectSingle(img, gotResults)
 
 }
 
@@ -58,6 +58,13 @@ function gotResults(err, result) {
     }
     // console.log(result)
     detections = result;
+
+    /////////////////////////////////////
+    const displaySize = { width: input.width, height: input.height };
+    // resize the detected boxes in case your displayed image has a different size than the original
+    const resizedDetections = faceapi.resizeResults(detections, displaySize);
+
+    ///////////////////////////////////////
 
     // background(220);
     background(255);
