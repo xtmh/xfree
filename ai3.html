@@ -17,64 +17,22 @@
             window.parent.postMessage("resize", "*");
         }
     </script>
-</head>
-
-<body translate="no">
-    <h1>顔検出</h1>
     <!--
     <script
         src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
     -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.3.0/p5.min.js'></script>
-    <script src='https://unpkg.com/ml5@latest/dist/ml5.min.js'></script>
-    <script id="rendered-js">
-        let input;
-        let img;
-        let faceapi;
+    <script src='https://unpkg.com/ml5@latest/dist/ml5.min.js'></script>  
+    <script src="js/face.js"></script>
+    <!--
+    <script src="https://gist.github.com/xtmh/5518d4dcf3e3d0399bf37f5c3a2ba53a.js"></script>
+    <script src="https://gist.github.com/xtmh/e9a30289727a798a66cfad6f3d339fdc.js"></script>
+    -->
+</head>
 
-        // 検出オプション
-        let options = {
-            withLandmarks: true,
-            withDescriptors: false
-        };
+<body translate="no">
+    <h1>顔検出</h1>
 
-        function setup() {
-            input = createFileInput(handleFile);
-            createCanvas(600, 400); // キャンバス
-            rect(0, 0, width, height); //枠線
-        }
-
-        function handleFile(file) {
-            if (file.type === 'image') {
-                img = createImg(file.data, '');
-                img.hide();
-                faceapi = ml5.faceApi(options, modelReady);
-            }
-        }
-
-        function modelReady() {
-            image(img, 0, 0, width, height);
-            faceapi.detectSingle(img, (error, results) => {
-                // 輪郭
-                let x = results["detection"]["_box"]["_x"];
-                let y = results["detection"]["_box"]["_y"];
-                let width = results["detection"]["_box"]["_width"];
-                let height = results["detection"]["_box"]["_height"];
-                noFill(); // 塗りつぶし
-                stroke("#ff0000"); // 線の色
-                rect(x, y, width, height);
-
-                // ランドマーク
-                let landmarks = results["landmarks"]["_positions"];
-                for (let landmark of landmarks) {
-                    let x = landmark["_x"];
-                    let y = landmark["_y"];
-                    fill("#00ff00");
-                    noStroke();
-                    circle(x, y, 5);
-                }
-            });
-        }
-    </script>
+    <hr>
 </body>
 </html>
