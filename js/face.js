@@ -16,7 +16,7 @@ function setup() {
 
 function handleFile(file) {
     if (file.type === 'image') {
-        img = createImg(file.data, '');
+        img = await createImg(file.data, '');
         img.hide();
         faceapi = ml5.faceApi(options, modelReady);
         /*
