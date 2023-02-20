@@ -10,7 +10,7 @@ function onFileSelected(input) {
     //var str = file.name;    //input.value;
     img = loadImage(str);
     //
-    createCanvas(200, 200);
+    //createCanvas(200, 200);
     img.resize(width, height);
     //img.resize(256, 256);
     //
@@ -33,10 +33,10 @@ function preload(){
 //  最初に処理される
 function setup() {
     createCanvas(200, 200);
-    img.resize(width, height);
+    //img.resize(width, height);
 
-    faceapi = ml5.faceApi(detection_options, modelReady)
-    textAlign(RIGHT);
+    //faceapi = ml5.faceApi(detection_options, modelReady)
+    //textAlign(RIGHT);
 }
 
 function draw(){
