@@ -12,6 +12,7 @@ function setup() {
     input = createFileInput(handleFile);
     createCanvas(600, 400); // キャンバス
     rect(0, 0, width, height); //枠線
+    const canvas = document.getElementById( 'facecanvas' );
 }
 
 function handleFile(file) {

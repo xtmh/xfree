@@ -8,7 +8,7 @@ function onFileSelected(input) {
     var file = input.files[0];
     var str = "images/"+file.name;    //input.value;
     //var str = file.name;    //input.value;
-    img = await loadImage(str);
+    img = loadImage(str);
     //
     createCanvas(width, height);
     img.resize(width, height);
@@ -43,12 +43,12 @@ function draw(){
     //image(img, 0, 0);
 }
 
-
 function modelReady() {
     console.log('ready!')
     console.log(faceapi)
-    const detections = await faceapi.detectSingle(img, gotResults)
-
+    const detections = faceapi.detectSingle(img, gotResults)
+    //
+    //createCanvas(img.width, img.height);
 }
 
 function gotResults(err, result) {
@@ -60,10 +60,9 @@ function gotResults(err, result) {
     detections = result;
 
     /////////////////////////////////////
-    const displaySize = { width: input.width, height: input.height };
+    //const displaySize = { width: input.width, height: input.height };
     // resize the detected boxes in case your displayed image has a different size than the original
-    const resizedDetections = faceapi.resizeResults(detections, displaySize);
-
+    //const resizedDetections = faceapi.resizeResults(detections, displaySize);
     ///////////////////////////////////////
 
     // background(220);
