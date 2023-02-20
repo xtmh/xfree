@@ -10,7 +10,7 @@ function onFileSelected(input) {
     //var str = file.name;    //input.value;
     img = loadImage(str);
     //
-    createCanvas(width, height);
+    createCanvas(335, 335);
     img.resize(width, height);
     //img.resize(256, 256);
     //
