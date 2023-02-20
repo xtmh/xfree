@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AI4</title>
+    <script>
+        if (document.location.search.match(/type=embed/gi)) {
+            window.parent.postMessage("resize", "*");
+        }
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.3.0/p5.min.js'></script>
+    <script src='https://unpkg.com/ml5@latest/dist/ml5.min.js'></script>
+
+</head>
+
+<body translate="no">
+    <h1>face detect.</h1>
+    <script type="text/javascript">
+        let input;
+        let img;
+        let faceapi;
+
+        // 検出オプション
+        let options = {
+            withLandmarks: true,
+            withDescriptors: false
+        };
+
+        const app = async () => {
+            // 顔検出の実行
+            const detections = await faceapi.detectSingle(img);
+            background(255);
+            image(img, 0, 0, img.width, img.height)
+            if (detections) {
+                // console.log(detections)
+                drawBox(detections)
+                drawLandmarks(detections)
+            }
+
+            // 結果の出力
+            console.log(detections);
+        }
+
+        function setup() {
+            input = createFileInput(handleFile);
+            createCanvas(600, 600); // キャンバス
+            rect(0, 0, width, height); //枠線
+            const canvas = document.getElementById('facecanvas');
+        }
+
+        async function handleFile(file) {
+            if (file.type === 'image') {
+                img = await createImg(file.data, '');
+                img.hide();
+                faceapi = ml5.faceApi(options, app);
+            }
+        }
+
+        function drawBox(detections) {
+            const alignedRect = detections.alignedRect;
+            const { _x, _y, _width, _height } = alignedRect._box;
+            noFill();
+            stroke(161, 95, 251);
+            strokeWeight(2)
+            rect(_x, _y, _width, _height)
+        }
+
+        function drawLandmarks(results) {
+            // ランドマーク
+            let landmarks = results["landmarks"]["_positions"];
+            for (let landmark of landmarks) {
+                let x = landmark["_x"];
+                let y = landmark["_y"];
+                fill("#00ff00"); // 塗りつぶしの色
+                noStroke(); // 線なし
+                circle(x, y, 2); // 円をキャンバスに描画
+            }
+        }
+
+
+    </script>
+    <hr>
+</body>
+
+</html>
