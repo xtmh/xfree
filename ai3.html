@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="apple-touch-icon" type="image/png"
+        href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+    <link rel="shortcut icon" type="image/x-icon"
+        href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+    <link rel="mask-icon" type="image/x-icon"
+        href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg"
+        color="#111" />
+    <title>AI3</title>
+    <script>
+        if (document.location.search.match(/type=embed/gi)) {
+            window.parent.postMessage("resize", "*");
+        }
+    </script>
+</head>
+
+<body translate="no">
+    <h1>顔検出</h1>
+    <!--
+    <script
+        src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+    -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.3.0/p5.min.js'></script>
+    <script src='https://unpkg.com/ml5@latest/dist/ml5.min.js'></script>
+    <script id="rendered-js">
+        let input;
+        let img;
+        let faceapi;
+
+        // 検出オプション
+        let options = {
+            withLandmarks: true,
+            withDescriptors: false
+        };
+
+        function setup() {
+            input = createFileInput(handleFile);
+            createCanvas(600, 400); // キャンバス
+            rect(0, 0, width, height); //枠線
+        }
+
+        function handleFile(file) {
+            if (file.type === 'image') {
+                img = createImg(file.data, '');
+                img.hide();
+                faceapi = ml5.faceApi(options, modelReady);
+            }
+        }
+
+        function modelReady() {
+            image(img, 0, 0, width, height);
+            faceapi.detectSingle(img, (error, results) => {
+                // 輪郭
+                let x = results["detection"]["_box"]["_x"];
+                let y = results["detection"]["_box"]["_y"];
+                let width = results["detection"]["_box"]["_width"];
+                let height = results["detection"]["_box"]["_height"];
+                noFill(); // 塗りつぶし
+                stroke("#ff0000"); // 線の色
+                rect(x, y, width, height);
+
+                // ランドマーク
+                let landmarks = results["landmarks"]["_positions"];
+                for (let landmark of landmarks) {
+                    let x = landmark["_x"];
+                    let y = landmark["_y"];
+                    fill("#00ff00");
+                    noStroke();
+                    circle(x, y, 5);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
