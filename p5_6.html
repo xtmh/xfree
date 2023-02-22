@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>P5</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
+    <script src='https://unpkg.com/ml5@latest/dist/ml5.min.js'></script>
+</head>
+
+<body translate="no">
+    <h1>Graphics</h1>
+    <script type="text/javascript">
+        function setup() {
+            createCanvas(710, 400);
+            background(102);
+        }
+
+        function draw() {
+            stroke(255);
+            if (mouseIsPressed === true) {
+                fill(102);
+                noStroke();
+                rect(0,0,200,50);
+                var str = "(" + mouseX + ", " + mouseY + ")";
+                stroke(0);
+                fill(0);
+                line(mouseX, mouseY, pmouseX, pmouseY);
+                noStroke();
+                text(str, 10, 20);   //  フレーム数表示
+            }else{
+                fill(102);
+                rect(0,0,710, 400);
+            }
+        }
+    </script>
+    <hr>
+</body>
+
+</html>

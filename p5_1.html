@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>P5</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
+    <script src='https://unpkg.com/ml5@latest/dist/ml5.min.js'></script>
+</head>
+
+<body translate="no">
+    <h1>Graphics</h1>
+    <script type="text/javascript">
+        let pg;
+
+        function setup() {
+            createCanvas(710, 400);
+            pg = createGraphics(400, 300);
+        }
+
+        function draw() {
+            fill(0, 12);
+            rect(0, 0, width, height);
+            fill(255);
+            //noStroke(); //  境界線非表示
+            ellipse(mouseX, mouseY, 60, 60);
+
+            //  Graphicsへの描画では残像がない
+            pg.background(51);
+            //pg.noFill();
+            pg.fill(255);
+            pg.stroke(255);
+            pg.ellipse(mouseX - 150, mouseY - 75, 60, 60);
+
+            //Draw the offscreen buffer to the screen with image()
+            image(pg, 150, 75);
+        };
+
+    </script>
+    <hr>
+</body>
+
+</html>

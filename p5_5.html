@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>P5</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
+    <script src='https://unpkg.com/ml5@latest/dist/ml5.min.js'></script>
+</head>
+
+<body translate="no">
+    <h1>Graphics</h1>
+    <script type="text/javascript">
+        function setup() {
+            createCanvas(300, 300, WEBGL);
+            describe('a white box rotating in 3D space');
+        }
+
+        function draw() {
+            background(200);
+            fill(255);    
+            rotateX(frameCount * 0.01);
+            rotateY(frameCount * 0.01+mouseX/10);
+            box(150);
+            //  表示されない
+            
+            fill(0);
+            text(frameCount, 10, 20);   //  フレーム数表示
+        }
+    </script>
+    <hr>
+</body>
+
+</html>
