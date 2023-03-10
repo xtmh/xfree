@@ -10,31 +10,42 @@
 
 <body translate="no">
     <h1>Graphics</h1>
+    <div id="result"></div>
     <script type="text/javascript">
+        let result=document.getElementById('result');
+        let str, str_old;
         function setup() {
-            createCanvas(710, 400);
+            let canvas = createCanvas(710, 400);
+            canvas.parent('result');
+            //canvas.position(10,100);
             background(102);
         }
 
         function draw() {
-            stroke(255);
+            stroke(255);    //  線の色
             if (mouseIsPressed === true) {
-                fill(102);
-                noStroke();
-                rect(0,0,200,50);
-                var str = "(" + mouseX + ", " + mouseY + ")";
-                stroke(0);
-                fill(0);
+                //  線の描画
+                //rect(0,0,200,50);
+                //stroke(255,0,0);    //  線の色
                 line(mouseX, mouseY, pmouseX, pmouseY);
-                noStroke();
-                text(str, 10, 20);   //  フレーム数表示
+                //  座標描画                
+                //noStroke();     //  文字の輪郭なし
+                stroke(102);
+                fill(102);      //  文字色（消しゴム）
+                text(str_old, 10, 20);  //  文字上書き消去
+                fill(0);        //  文字色（ペン）
+                str = "(" + mouseX + ", " + mouseY + ")";
+                text(str, 10, 20);      //  文字描画
+                str_old = str;  //  旧座標を消去用に保持
             }else{
+                //  マウスクリックリリース時の処理
                 fill(102);
                 rect(0,0,710, 400);
             }
         }
     </script>
     <hr>
+    <script src="https://gist.github.com/xtmh/a07f6bc476d18bd443e9109cd4b6d86d.js"></script>
 </body>
 
 </html>
