@@ -15,9 +15,12 @@
 
 <body translate="no">
     <h1>Graphics</h1>
+    <div id="result"></div>
     <script type="text/javascript">
+        let result = document.getElementById('result');
         function setup() {
-            createCanvas(720, 400);
+            let canvas = createCanvas(720, 400);
+            canvas.parent(result);
         }
 
         function draw() {
@@ -71,7 +74,7 @@
         }
     </script>
     <hr>
-
+    <script src="https://gist.github.com/xtmh/895141285f59547ae31ed006f72aabbd.js"></script>
 </body>
 
 </html>
