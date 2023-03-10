@@ -10,11 +10,19 @@
 
 <body translate="no">
     <h1>Graphics</h1>
+    <div id="result"></div>
     <script type="text/javascript">
         let pg;
+        let result = document.getElementById('result');
+
+        window.onload = function(){
+            fill(255,0,0);
+        }
 
         function setup() {
-            createCanvas(710, 400);
+            let canvas = createCanvas(710, 400);
+            canvas.parent(result);
+            //createCanvas(710, 400);
             pg = createGraphics(400, 300);
         }
 
@@ -38,6 +46,7 @@
 
     </script>
     <hr>
+    <script src="https://gist.github.com/xtmh/f9996661b374ed0554caeacfcf454512.js"></script>
 </body>
 
 </html>
