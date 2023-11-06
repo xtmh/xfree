@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>画像のアップロード</h2>
+
+<input type="file" id="imgUpload" accept="image/*">
+
+<img id="preview" src="" alt="画像プレビュー" style="max-width: 200px; max-height: 200px;">
+
+<script>
+document.getElementById("imgUpload").onchange = function (e) {
+    // ファイルリーダーを作成
+    let reader = new FileReader();
+    reader.onload = function (e) {
+        // 画像プレビューにソースをセット
+        document.getElementById("preview").src = e.target.result;
+    };
+    // 画像ファイルを読み込む
+    reader.readAsDataURL(e.target.files[0]);
+};
+</script>
+
+</body>
+</html>
