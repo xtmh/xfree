@@ -19,7 +19,8 @@
     <script type="text/javascript">
         let result = document.getElementById('result');
         function setup() {
-            createCanvas(720, 400);
+            let canvas = createCanvas(720, 400);
+            canvas.parent(result);    //canvasを指定した要素の子要素にする
             stroke(255);
             noFill();
         }
