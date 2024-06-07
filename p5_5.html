@@ -12,7 +12,8 @@
     <h1>Graphics</h1>
     <script type="text/javascript">
         function setup() {
-            createCanvas(300, 300, WEBGL);
+            let canvas = createCanvas(300, 300, WEBGL);
+            canvas.parent(result);    //canvasを指定した要素の子要素にする
             describe('a white box rotating in 3D space');
         }
 
