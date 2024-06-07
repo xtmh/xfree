@@ -18,7 +18,8 @@
         let outsideRadius = 150;
         let insideRadius = 100;
         function setup() {
-            createCanvas(720, 400);
+            let canvas = createCanvas(720, 400);
+            canvas.parent(result);
             background(204);
             x = width / 2;
             y = height / 2;
