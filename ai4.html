@@ -44,10 +44,10 @@
 
         function setup() {
             input = createFileInput(handleFile);
-            createCanvas(600, 600); // キャンバス
+            let cvs = createCanvas(600, 600); // キャンバス
+            cvs.parent('result');
             rect(0, 0, width, height); //枠線
             const canvas = document.getElementById('facecanvas');
-            canvas.parent('result');
         }
 
         async function handleFile(file) {
